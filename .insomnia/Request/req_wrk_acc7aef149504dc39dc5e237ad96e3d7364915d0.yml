@@ -1,0 +1,27 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d7364915d0
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dfde59ed
+modified: 1659449963201
+created: 1659449963201
+url: "{{ base_url }}/api/skus/{{ skuId }}"
+name: DELETE SKU
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963201
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

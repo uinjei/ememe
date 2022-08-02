@@ -1,0 +1,44 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d700d5b55b
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dfde59ed
+modified: 1659449963203
+created: 1659449963203
+url: "{{ base_url }}/api/skus"
+name: UPDATE SKU
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "id": 1,
+      "benefit": "FADE",
+      "description": "check",
+      "price": 4444.22,
+      "temp_start_date": "2022-05-10",
+      "temp_end_date": "2022-06-10",
+      "temp_price": 22,
+      "benefits": [],
+      "tags": "test",
+      "publish": true
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: true
+    value: string
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963203
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

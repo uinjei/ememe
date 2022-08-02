@@ -1,0 +1,48 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d73cbed28c
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dc917a77
+modified: 1659449963148
+created: 1659449963148
+url: "{{ base_url }}/api/v2/subscription"
+name: CREATE Subscription V2
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "user_detail_id": 400,
+      "subscription_plan": {
+        "id": 2
+      },
+      "expiry": "2023-07-27",
+      "referrer": "facebook.com",
+      "retry_count": 0,
+      "next_action": "resume",
+      "next_date": "2022-08-20",
+      "retry_days": "123",
+      "channel": "SMS",
+      "campaign": "night elf",
+      "trial_date": "2023-07-29",
+      "tags": "tag 1"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: true
+    value: string
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963148
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

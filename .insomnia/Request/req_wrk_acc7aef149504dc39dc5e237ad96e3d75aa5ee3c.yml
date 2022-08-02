@@ -1,0 +1,36 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d75aa5ee3c
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d75340c1a8
+modified: 1659449963157
+created: 1659449963157
+url: "{{ base_url }}/api/v2/subscription-plans"
+name: RETRIEVE All Plans V2
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: page
+    disabled: true
+    value: "0"
+  - name: size
+    disabled: true
+    value: "0"
+  - name: search
+    disabled: true
+    value: string
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963157
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

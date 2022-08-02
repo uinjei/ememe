@@ -1,0 +1,43 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d721ac5cce
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dfde59ed
+modified: 1659449963207
+created: 1659449963207
+url: "{{ base_url }}/api/skus/create"
+name: CREATE SKU
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "benefit": "test name1",
+      "description": "",
+      "price": 4444.22,
+      "temp_start_date": "2022-05-10",
+      "temp_end_date": "2022-06-10",
+      "temp_price": 22,
+      "benefits": [],
+      "tags": "test",
+      "publish": true
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: true
+    value: string
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963207
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

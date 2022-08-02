@@ -1,0 +1,27 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d742e107b0
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dc917a77
+modified: 1659449963145
+created: 1659449963145
+url: "{{ base_url }}/api/v2/subscription"
+name: RETRIEVE All Subscription V2
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963145
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,27 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d7d17b38cd
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d75340c1a8
+modified: 1659449963151
+created: 1659449963151
+url: "{{ base_url }}/api/v2/subscription-plans/{{ subsPlanId }}"
+name: DELETE Subscription Plan V2
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963151
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,43 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d76a7e4505
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d72e0e0644
+modified: 1659449963189
+created: 1659449963189
+url: "{{ base_url }}/api/exclusivity-group"
+name: CREATE Exclusivity Group
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "name": "EG 60",
+      "subscription_plans": [
+        {
+          "id": 2
+        },
+        {
+          "id": 4
+        }
+      ]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: true
+    value: string
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963189
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

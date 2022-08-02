@@ -1,0 +1,2801 @@
+_id: spc_7a39ce0ae08f403e93cee6b6ee38d128
+type: ApiSpec
+parentId: wrk_acc7aef149504dc39dc5e237ad96e3d7
+modified: 1659449979594
+created: 1659449973816
+fileName: KMD Payment Subscription 2.0
+contents: >
+  openapi: 3.0.0
+
+  info:
+    title: KMD Payment Subscription
+    version: '2.0'
+  servers:
+    - url: http://localhost:8000
+  components:
+    securitySchemes:
+      bearerAuth:
+        type: http
+        scheme: bearer
+  security: 
+    - bearerAuth: []
+  tags:
+    - name: skus
+    - name: vouchers
+    - name: exclusivity-group
+    - name: tariffs
+    - name: subscription-plans
+    - name: subscription
+  paths:
+    /api/skus/create:
+      post:
+        tags:
+          - skus
+        summary: CREATE SKU
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  benefit: test name1
+                  description: ''
+                  price: 4444.22
+                  temp_start_date: '2022-05-10'
+                  temp_end_date: '2022-06-10'
+                  temp_price: 22
+                  benefits: []
+                  tags: test
+                  publish: true
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  data:
+                    id: 1
+                    benefit: test name 1
+                    description: ''
+                    price: 4444.22
+                    temp_price: 22
+                    temp_start_date: '2022-05-10'
+                    temp_end_date: '2022-06-10'
+                    tags: test
+                    publish: true
+                    benefits: []
+                    status:
+                      id: 2
+                      code: 1
+                      description: Active
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+    /api/skus:
+      get:
+        tags:
+          - skus
+        summary: RETRIEVE All SKU
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: page
+            in: query
+            schema:
+              type: integer
+            example: '1'
+          - name: size
+            in: query
+            schema:
+              type: integer
+            example: '10'
+          - name: search
+            in: query
+            schema:
+              type: string
+            example: KMD2020
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  content:
+                  - id: 1
+                    benefit: test name1
+                    description: ''
+                    price: 4444.22
+                    temp_price: 22
+                    temp_start_date: '2022-05-10'
+                    temp_end_date: '2022-06-10'
+                    tags: test
+                    publish: true
+                    status:
+                      code: 1
+                      description: Active
+                      message:
+                    benefits: []
+                  pageable:
+                    sort:
+                      unsorted: true
+                      sorted: false
+                      empty: true
+                    offset: 0
+                    page_number: 0
+                    page_size: 10
+                    unpaged: false
+                    paged: true
+                  total_elements: 1
+                  last: true
+                  total_pages: 1
+                  number: 0
+                  size: 10
+                  sort:
+                    unsorted: true
+                    sorted: false
+                    empty: true
+                  number_of_elements: 1
+                  first: true
+                  empty: false
+      put:
+        tags:
+          - skus
+        summary: UPDATE SKU
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  benefit: FADE
+                  description: check
+                  price: 4444.22
+                  temp_start_date: '2022-05-10'
+                  temp_end_date: '2022-06-10'
+                  temp_price: 22
+                  benefits: []
+                  tags: test
+                  publish: true
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  data:
+                    id: 1
+                    benefit: FADE
+                    description: check
+                    price: 4444.22
+                    temp_price: 22
+                    temp_start_date: '2022-05-10'
+                    temp_end_date: '2022-06-10'
+                    tags: test
+                    publish: true
+                    benefits: []
+                    status:
+                      id: 2
+                      code: 1
+                      description: Active
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+    /api/skus/{skuId}:
+      delete:
+        tags:
+          - skus
+        summary: DELETE SKU
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: skuId
+            in: path
+            schema:
+              type: integer
+            required: true
+            description: (Required) ID of sku to delete
+            example: '1'
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 1
+    /api/vouchers:
+      post:
+        tags:
+          - vouchers
+        summary: CREATE Vouchers
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  voucher_code: KMD2028
+                  description: desc
+                  tac: test tac
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 
+                  data:
+                    id: 2
+                    voucher_code: KMD2025
+                    description: desc
+                    tac: test tac
+                    status:
+                      id: 2
+                      code: 1
+                      description: Active
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+      get:
+        tags:
+          - vouchers
+        summary: RETRIEVE All Vouchers
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: page
+            in: query
+            schema:
+              type: integer
+            example: '1'
+          - name: size
+            in: query
+            schema:
+              type: integer
+            example: '10'
+          - name: search
+            in: query
+            schema:
+              type: string
+            example: KMD2020
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  content:
+                    - id: 2
+                      voucher_code: KMD2025
+                      description: desc
+                      tac: test tac
+                      status:
+                        code: 1
+                        description: Active
+                        message: null
+                    - id: 1
+                      voucher_code: KMD2028
+                      description: desc
+                      tac: test tac
+                      status:
+                        code: 1
+                        description: Active
+                        message: null
+                  pageable:
+                    sort:
+                      unsorted: true
+                      sorted: false
+                      empty: true
+                    offset: 0
+                    page_number: 0
+                    page_size: 10
+                    unpaged: false
+                    paged: true
+                  total_elements: 2
+                  last: true
+                  total_pages: 1
+                  number: 0
+                  size: 10
+                  sort:
+                    unsorted: true
+                    sorted: false
+                    empty: true
+                  number_of_elements: 2
+                  first: true
+                  empty: false
+      put:
+        tags:
+          - vouchers
+        summary: UPDATE Vouchers
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  voucher_code: KMD20299
+                  description: desc test
+                  tac: test tac test
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  id: 1
+                  voucher_code: KMD20299
+                  description: desc test
+                  tac: test tac test
+                  status:
+                    id: 2
+                    code: 1
+                    description: Active
+                    success: false
+                    deleted: false
+                    pending: false
+                    refunded: false
+                    emr_closed: false
+                    failed: false
+    /api/vouchers/{voucherId}:
+      delete:
+        tags:
+          - vouchers
+        summary: DELETE Vouchers
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: voucherId
+            in: path
+            schema:
+              type: integer
+            required: true
+            description: (Required) ID of voucher to delete
+            example: '1'
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 1
+    /api/exclusivity-group:
+      post:
+        tags:
+          - exclusivity-group
+        summary: CREATE Exclusivity Group
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  name: EG 60
+                  subscription_plans:
+                    - id: 2
+                    - id: 4
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  data:
+                    id: 5
+                    name: EG 62
+                    status:
+                      id: 2
+                      code: 1
+                      description: Active
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+                    subscription_plans:
+                      - id: 2
+                        name: Test Plan Name 3
+                        pre_termination_fee: true
+                        retail_offer: true
+                        dependents: 2
+                        discount_tariffs:
+                          id: 1
+                          operator_tariff: Test Operator Tariff Text 1234
+                          operator_reference: Test Operator Reference Text 12
+                          value: 22.22
+                          status:
+                            id: 2
+                            code: 1
+                            success: false
+                            deleted: false
+                            pending: false
+                            refunded: false
+                            emr_closed: false
+                            failed: false
+                          previous_tariff: null
+                          current_snapshot: true
+                        discount_period:
+                          id: 5
+                          type: MONTHLY
+                          length: 1
+                          count: 1
+                        recurring_tariffs:
+                          id: 1
+                          operator_tariff: Test Operator Tariff Text 1234
+                          operator_reference: Test Operator Reference Text 12
+                          value: 22.22
+                          status:
+                            id: 2
+                            code: 1
+                            success: false
+                            deleted: false
+                            pending: false
+                            refunded: false
+                            emr_closed: false
+                            failed: false
+                          previous_tariff: null
+                          current_snapshot: true
+                        recurring_period:
+                          id: 4
+                          type: MONTHLY
+                          length: 1
+                          count: 12
+                        lock_in_period:
+                          id: 6
+                          type: YEARLY
+                          length: 1
+                          count: 0
+                        benefits:
+                          - id: 1
+                            subscription_plan_benefit:
+                              id: 1
+                              benefit: FADE
+                              description: check
+                              price: 4444.22
+                              temp_price: 22
+                              temp_start_date: '2022-05-10'
+                              temp_end_date: '2022-06-10'
+                              tags: test
+                              publish: true
+                              benefits: []
+                              status:
+                                id: 3
+                                code: 2
+                                description: Deleted
+                                success: false
+                                deleted: true
+                                pending: false
+                                refunded: false
+                                emr_closed: false
+                                failed: false
+                            count: 1
+                            period_type: DAILY
+                        vouchers:
+                          - id: 1
+                            plan_vouchers:
+                              id: 1
+                              voucher_code: KMD20299
+                              description: desc test
+                              tac: test tac test
+                              status:
+                                id: 2
+                                code: 1
+                                description: Active
+                                success: false
+                                deleted: false
+                                pending: false
+                                refunded: false
+                                emr_closed: false
+                                failed: false
+                            count: 1
+                        prerequisite_plans: []
+                        status:
+                          id: 2
+                          code: 1
+                          description: Active
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+      get:
+        tags:
+          - exclusivity-group
+        summary: RETRIEVE All Exclusivity Group
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: page
+            in: query
+            schema:
+              type: integer
+            example: '1'
+          - name: size
+            in: query
+            schema:
+              type: integer
+            example: '10'
+          - name: search
+            in: query
+            schema:
+              type: string
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  content:
+                    - id: 5
+                      name: EG 62
+                      status:
+                        code: 1
+                        description: Active
+                        message: null
+                      subscription_plans:
+                        - id: 2
+                          name: Test Plan Name 3
+                    - id: 4
+                      name: EG 61
+                      status:
+                        code: 1
+                        description: Active
+                        message: null
+                      subscription_plans:
+                        - id: 4
+                          name: Test Plan Name 4
+                    - id: 3
+                      name: EG 60
+                      status:
+                        code: 1
+                        description: Active
+                        message: null
+                      subscription_plans: []
+                  pageable:
+                    sort:
+                      unsorted: true
+                      sorted: false
+                      empty: true
+                    offset: 0
+                    page_number: 0
+                    page_size: 10
+                    unpaged: false
+                    paged: true
+                  total_elements: 3
+                  last: true
+                  total_pages: 1
+                  number: 0
+                  size: 10
+                  sort:
+                    unsorted: true
+                    sorted: false
+                    empty: true
+                  number_of_elements: 3
+                  first: true
+                  empty: false
+      put:
+        tags:
+          - exclusivity-group
+        summary: UPDATE Exclusivity Group
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 11
+                  name: EG 156
+                  subscription_plans:
+                    - id: 1
+                    - id: 2
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  id: 3
+                  name: EG 156
+                  status:
+                    id: 2
+                    code: 1
+                    description: Active
+                    success: false
+                    deleted: false
+                    pending: false
+                    refunded: false
+                    emr_closed: false
+                    failed: false
+                  subscription_plans:
+                    - id: 2
+                      name: Test Plan Name 3
+                      pre_termination_fee: true
+                      retail_offer: true
+                      dependents: 2
+                      discount_tariffs:
+                        id: 1
+                        operator_tariff: Test Operator Tariff Text 1234
+                        operator_reference: Test Operator Reference Text 12
+                        value: 22.22
+                        status:
+                          id: 2
+                          code: 1
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                        previous_tariff: null
+                        current_snapshot: true
+                      discount_period:
+                        id: 5
+                        type: MONTHLY
+                        length: 1
+                        count: 1
+                      recurring_tariffs:
+                        id: 1
+                        operator_tariff: Test Operator Tariff Text 1234
+                        operator_reference: Test Operator Reference Text 12
+                        value: 22.22
+                        status:
+                          id: 2
+                          code: 1
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                        previous_tariff: null
+                        current_snapshot: true
+                      recurring_period:
+                        id: 4
+                        type: MONTHLY
+                        length: 1
+                        count: 12
+                      lock_in_period:
+                        id: 6
+                        type: YEARLY
+                        length: 1
+                        count: 0
+                      benefits:
+                        - id: 1
+                          subscription_plan_benefit:
+                            id: 1
+                            benefit: FADE
+                            description: check
+                            price: 4444.22
+                            temp_price: 22
+                            temp_start_date: '2022-05-10'
+                            temp_end_date: '2022-06-10'
+                            tags: test
+                            publish: true
+                            benefits: []
+                            status:
+                              id: 3
+                              code: 2
+                              description: Deleted
+                              success: false
+                              deleted: true
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                          count: 1
+                          period_type: DAILY
+                      vouchers:
+                        - id: 1
+                          plan_vouchers:
+                            id: 1
+                            voucher_code: KMD20299
+                            description: desc test
+                            tac: test tac test
+                            status:
+                              id: 2
+                              code: 1
+                              description: Active
+                              success: false
+                              deleted: false
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                          count: 1
+                      prerequisite_plans: []
+                      status:
+                        id: 2
+                        code: 1
+                        description: Active
+                        success: false
+                        deleted: false
+                        pending: false
+                        refunded: false
+                        emr_closed: false
+                        failed: false
+    /api/exclusivity-group/{exclusivityGroupId}:
+      delete:
+        tags:
+          - exclusivity-group
+        summary: DELETE Exclusivity Group
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: exclusivityGroupId
+            in: path
+            schema:
+              type: integer
+            required: true
+            description: (Required) ID of voucher to delete
+            example: '1'
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 1
+    /api/tariffs:
+      post:
+        tags:
+          - tariffs
+        summary: CREATE Tariffs
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  type: recurring
+                  operator_tariff: Test Operator Tariff Text 1234
+                  operator_reference: Test Operator Reference Text 12
+                  value: 22.22
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 
+                  data:
+                  id: 2
+                  operator_tariff: Test Operator Tariff Text 12345
+                  operator_reference: Test Operator Reference Text 12
+                  value: 22.22
+                  status:
+                    id: 2
+                    code: 1
+                    success: false
+                    deleted: false
+                    pending: false
+                    refunded: false
+                    emr_closed: false
+                    failed: false
+                  previous_tariff: null
+                  current_snapshot: true
+      get:
+        tags:
+          - tariffs
+        summary: RETRIEVE All Tariffs
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: page
+            in: query
+            schema:
+              type: integer
+            example: '1'
+          - name: size
+            in: query
+            schema:
+              type: integer
+            example: '10'
+          - name: search
+            in: query
+            schema:
+              type: integer
+            example: ''
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  content:
+                    - id: 2
+                      operator_tariff: Test Operator Tariff Text 12345
+                      operator_reference: Test Operator Reference Text 12
+                      value: 22.22
+                      status:
+                        code: 1
+                        description: Active
+                        message: null
+                      previous_tariff: null
+                      current_snapshot: false
+                    - id: 1
+                      operator_tariff: Test Operator Tariff Text 1234
+                      operator_reference: Test Operator Reference Text 12
+                      value: 22.22
+                      status:
+                        code: 1
+                        description: Active
+                        message: null
+                      previous_tariff: null
+                      current_snapshot: false
+                  pageable:
+                    sort:
+                      unsorted: true
+                      sorted: false
+                      empty: true
+                    offset: 0
+                    page_number: 0
+                    page_size: 10
+                    unpaged: false
+                    paged: true
+                  total_elements: 2
+                  last: true
+                  total_pages: 1
+                  number: 0
+                  size: 10
+                  sort:
+                    unsorted: true
+                    sorted: false
+                    empty: true
+                  number_of_elements: 2
+                  first: true
+                  empty: false
+      put:
+        tags:
+          - tariffs
+        summary: UPDATE Tariffs
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 12
+                  operator_tariff: Test Operator Tariff Text 123456789
+                  operator_reference: Test Operator Reference Text 1
+                  value: 11.11
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  id: 3
+                  operator_tariff: Test Operator Tariff Text 123456789
+                  operator_reference: Test Operator Reference Text 1
+                  value: 11.11
+                  status:
+                    id: 2
+                    code: 1
+                    success: false
+                    deleted: false
+                    pending: false
+                    refunded: false
+                    emr_closed: false
+                    failed: false
+                  previous_tariff:
+                    id: 2
+                    operator_tariff: Test Operator Tariff Text 12345
+                    operator_reference: Test Operator Reference Text 12
+                    value: 22.22
+                    status:
+                      id: 2
+                      code: 1
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+                    current_snapshot: false
+                  current_snapshot: true
+    /api/tariffs/{tariffId}:
+      delete:
+        tags:
+          - tariffs
+        summary: DELETE Tariffs
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: tariffId
+            in: path
+            schema:
+              type: integer
+            required: true
+            description: (Required) ID of tariff to delete
+            example: '1'
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 1
+    /api/v2/subscription-plans:
+      post:
+        tags:
+          - subscription-plans
+        summary: CREATE Subscription Plan V2
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  name: Test Plan Name 3
+                  retail_offer: true
+                  pre_termination_fee: true
+                  dependents: 2
+                  benefits:
+                    - subscription_plan_benefit:
+                        id: 1
+                      count: 1
+                      period_type: DAILY
+                  vouchers:
+                    - subscription_plan_vouchers:
+                        id: 1
+                      count: 1
+                      expiry: '2022-05-10'
+                  prerequisite_plans:
+                    - id: 2
+                  exclusivity_group:
+                    id: 1
+                  discount_tariffs:
+                    id: 1
+                  recurring_tariffs:
+                    id: 1
+                  discount_period:
+                    count: 1
+                    length: 1
+                    type: MONTHLY
+                  recurring_period:
+                    count: 12
+                    length: 1
+                    type: MONTHLY
+                  lock_in_period:
+                    length: 1
+                    type: YEARLY
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 
+                  data:
+                    id: 5
+                    name: Test Plan Name 5
+                    pre_termination_fee: true
+                    retail_offer: true
+                    dependents: 2
+                    discount_tariffs:
+                      id: 1
+                      operator_tariff: Test Operator Tariff Text 1234
+                      operator_reference: Test Operator Reference Text 12
+                      value: 22.22
+                      status:
+                        id: 2
+                        code: 1
+                        success: false
+                        deleted: false
+                        pending: false
+                        refunded: false
+                        emr_closed: false
+                        failed: false
+                      previous_tariff: null
+                      current_snapshot: true
+                    discount_period:
+                      id: 14
+                      type: MONTHLY
+                      length: 1
+                      count: 1
+                    recurring_tariffs:
+                      id: 1
+                      operator_tariff: Test Operator Tariff Text 1234
+                      operator_reference: Test Operator Reference Text 12
+                      value: 22.22
+                      status:
+                        id: 2
+                        code: 1
+                        success: false
+                        deleted: false
+                        pending: false
+                        refunded: false
+                        emr_closed: false
+                        failed: false
+                      previous_tariff: null
+                      current_snapshot: true
+                    recurring_period:
+                      id: 13
+                      type: MONTHLY
+                      length: 1
+                      count: 12
+                    lock_in_period:
+                      id: 15
+                      type: YEARLY
+                      length: 1
+                      count: 0
+                    benefits:
+                      - id: 3
+                        subscription_plan_benefit:
+                          id: 1
+                          benefit: FADE
+                          description: check
+                          price: 4444.22
+                          temp_price: 22
+                          temp_start_date: '2022-05-10'
+                          temp_end_date: '2022-06-10'
+                          tags: test
+                          publish: true
+                          benefits: []
+                          status:
+                            id: 3
+                            code: 2
+                            description: Deleted
+                            success: false
+                            deleted: true
+                            pending: false
+                            refunded: false
+                            emr_closed: false
+                            failed: false
+                        count: 1
+                        period_type: DAILY
+                    vouchers:
+                      - id: 3
+                        plan_vouchers:
+                          id: 1
+                          voucher_code: KMD20299
+                          description: desc test
+                          tac: test tac test
+                          status:
+                            id: 2
+                            code: 1
+                            description: Active
+                            success: false
+                            deleted: false
+                            pending: false
+                            refunded: false
+                            emr_closed: false
+                            failed: false
+                        count: 1
+                    prerequisite_plans:
+                      - id: 2
+                        name: Test Plan Name 3
+                        pre_termination_fee: true
+                        retail_offer: true
+                        dependents: 2
+                        discount_tariffs:
+                          id: 1
+                          operator_tariff: Test Operator Tariff Text 1234
+                          operator_reference: Test Operator Reference Text 12
+                          value: 22.22
+                          status:
+                            id: 2
+                            code: 1
+                            success: false
+                            deleted: false
+                            pending: false
+                            refunded: false
+                            emr_closed: false
+                            failed: false
+                          previous_tariff: null
+                          current_snapshot: true
+                        discount_period:
+                          id: 5
+                          type: MONTHLY
+                          length: 1
+                          count: 1
+                        recurring_tariffs:
+                          id: 1
+                          operator_tariff: Test Operator Tariff Text 1234
+                          operator_reference: Test Operator Reference Text 12
+                          value: 22.22
+                          status:
+                            id: 2
+                            code: 1
+                            success: false
+                            deleted: false
+                            pending: false
+                            refunded: false
+                            emr_closed: false
+                            failed: false
+                          previous_tariff: null
+                          current_snapshot: true
+                        recurring_period:
+                          id: 4
+                          type: MONTHLY
+                          length: 1
+                          count: 12
+                        lock_in_period:
+                          id: 6
+                          type: YEARLY
+                          length: 1
+                          count: 0
+                        benefits:
+                          - id: 1
+                            subscription_plan_benefit:
+                              id: 1
+                              benefit: FADE
+                              description: check
+                              price: 4444.22
+                              temp_price: 22
+                              temp_start_date: '2022-05-10'
+                              temp_end_date: '2022-06-10'
+                              tags: test
+                              publish: true
+                              benefits: []
+                              status:
+                                id: 3
+                                code: 2
+                                description: Deleted
+                                success: false
+                                deleted: true
+                                pending: false
+                                refunded: false
+                                emr_closed: false
+                                failed: false
+                            count: 1
+                            period_type: DAILY
+                        vouchers:
+                          - id: 1
+                            plan_vouchers:
+                              id: 1
+                              voucher_code: KMD20299
+                              description: desc test
+                              tac: test tac test
+                              status:
+                                id: 2
+                                code: 1
+                                description: Active
+                                success: false
+                                deleted: false
+                                pending: false
+                                refunded: false
+                                emr_closed: false
+                                failed: false
+                            count: 1
+                        prerequisite_plans: []
+                        status:
+                          id: 2
+                          code: 1
+                          description: Active
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                    status:
+                      id: 2
+                      code: 1
+                      description: Active
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+      get:
+        tags:
+          - subscription-plans
+        summary: RETRIEVE All Plans V2
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: page
+            in: query
+            schema:
+              type: integer
+            example: '1'
+          - name: size
+            in: query
+            schema:
+              type: integer
+            example: '10'
+          - name: search
+            in: query
+            schema:
+              type: string
+            example: ''
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 
+                  content:
+                    - id: 5
+                      name: Test Plan Name 5
+                      pre_termination_fee: true
+                      retail_offer: true
+                      dependents: 2
+                      discount_tariffs:
+                        id: 1
+                        operator_tariff: Test Operator Tariff Text 1234
+                        operator_reference: Test Operator Reference Text 12
+                        value: 22.22
+                        status:
+                          code: 1
+                          description: Active
+                          message: null
+                        previous_tariff: null
+                        current_snapshot: false
+                      discount_period:
+                        id: 14
+                        type: MONTHLY
+                        length: 1
+                        count: 1
+                      recurring_tariffs:
+                        id: 1
+                        operator_tariff: Test Operator Tariff Text 1234
+                        operator_reference: Test Operator Reference Text 12
+                        value: 22.22
+                        status:
+                          code: 1
+                          description: Active
+                          message: null
+                        previous_tariff: null
+                        current_snapshot: false
+                      recurring_period:
+                        id: 13
+                        type: MONTHLY
+                        length: 1
+                        count: 12
+                      lock_in_period:
+                        id: 15
+                        type: YEARLY
+                        length: 1
+                        count: 0
+                      exclusivity_group:
+                        id: 3
+                        name: EG 156
+                        status:
+                          code: 1
+                          description: Active
+                          message: null
+                        subscription_plans:
+                          - id: 2
+                            name: Test Plan Name 3
+                          - id: 5
+                            name: Test Plan Name 5
+                      status:
+                        code: 1
+                        description: Active
+                        message: null
+                      benefits:
+                        - id: 3
+                          subscription_plan_benefit:
+                            id: 1
+                            benefit: FADE
+                            description: check
+                            price: 4444.22
+                            temp_price: 22
+                            temp_start_date: '2022-05-10'
+                            temp_end_date: '2022-06-10'
+                            tags: test
+                            publish: true
+                            status:
+                              code: 2
+                              description: Deleted
+                              message: null
+                            benefits: []
+                          count: 1
+                          period_type: DAILY
+                      vouchers:
+                        - id: 3
+                          count: 1
+                          subscription_plan_vouchers:
+                            id: 1
+                            voucher_code: KMD20299
+                            description: desc test
+                            tac: test tac test
+                            status:
+                              code: 1
+                              description: Active
+                              message: null
+                      prerequisite_plans:
+                        - id: 2
+                          name: Test Plan Name 3
+                          pre_termination_fee: true
+                          retail_offer: true
+                          dependents: 2
+                          discount_tariffs:
+                            id: 1
+                            operator_tariff: Test Operator Tariff Text 1234
+                            operator_reference: Test Operator Reference Text 12
+                            value: 22.22
+                            status:
+                              code: 1
+                              description: Active
+                              message: null
+                            previous_tariff: null
+                            current_snapshot: false
+                          discount_period:
+                            id: 5
+                            type: MONTHLY
+                            length: 1
+                            count: 1
+                          recurring_tariffs:
+                            id: 1
+                            operator_tariff: Test Operator Tariff Text 1234
+                            operator_reference: Test Operator Reference Text 12
+                            value: 22.22
+                            status:
+                              code: 1
+                              description: Active
+                              message: null
+                            previous_tariff: null
+                            current_snapshot: false
+                          recurring_period:
+                            id: 4
+                            type: MONTHLY
+                            length: 1
+                            count: 12
+                          lock_in_period:
+                            id: 6
+                            type: YEARLY
+                            length: 1
+                            count: 0
+                          exclusivity_group:
+                            id: 3
+                            name: EG 156
+                            status:
+                              code: 1
+                              description: Active
+                              message: null
+                            subscription_plans:
+                              - id: 2
+                                name: Test Plan Name 3
+                              - id: 5
+                                name: Test Plan Name 5
+                          status:
+                            code: 1
+                            description: Active
+                            message: null
+                          benefits:
+                            - id: 1
+                              subscription_plan_benefit:
+                                id: 1
+                                benefit: FADE
+                                description: check
+                                price: 4444.22
+                                temp_price: 22
+                                temp_start_date: '2022-05-10'
+                                temp_end_date: '2022-06-10'
+                                tags: test
+                                publish: true
+                                status:
+                                  code: 2
+                                  description: Deleted
+                                  message: null
+                                benefits: []
+                              count: 1
+                              period_type: DAILY
+                          vouchers:
+                            - id: 1
+                              count: 1
+                              subscription_plan_vouchers:
+                                id: 1
+                                voucher_code: KMD20299
+                                description: desc test
+                                tac: test tac test
+                                status:
+                                  code: 1
+                                  description: Active
+                                  message: null
+                          prerequisite_plans: []
+                  pageable:
+                    sort:
+                      unsorted: true
+                      sorted: false
+                      empty: true
+                    offset: 0
+                    page_number: 0
+                    page_size: 1
+                    unpaged: false
+                    paged: true
+                  total_elements: 3
+                  last: false
+                  total_pages: 3
+                  number: 0
+                  size: 1
+                  sort:
+                    unsorted: true
+                    sorted: false
+                    empty: true
+                  number_of_elements: 1
+                  first: true
+                  empty: false
+      put:
+        tags:
+          - subscription-plans
+        summary: UPDATE Subscription Plan V2
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: Test Plan Name 2
+                  retail_offer: true
+                  pre_termination_fee: true
+                  dependents: 2
+                  benefits:
+                    - id: 1
+                      subscription_plan_benefit:
+                        id: 1
+                      count: 2
+                      period_type: DAILY
+                    - id: 2
+                      subscription_plan_benefit:
+                        id: 1
+                      count: 2
+                      period_type: DAILY
+                  vouchers:
+                    - id: 1
+                      subscription_plan_vouchers:
+                        id: 1
+                      count: 1
+                      expiry: '2022-05-10'
+                  prerequisite_plans:
+                    - id: 2
+                  exclusivity_group:
+                    id: 1
+                  discount_tariffs:
+                    id: 1
+                  recurring_tariffs:
+                    id: 1
+                  discount_period:
+                    count: 1
+                    length: 1
+                    type: MONTHLY
+                  recurring_period:
+                    count: 12
+                    length: 1
+                    type: MONTHLY
+                  lock_in_period:
+                    length: 1
+                    type: YEARLY
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  id: 5
+                  name: Test Plan Name 2
+                  pre_termination_fee: true
+                  retail_offer: true
+                  dependents: 2
+                  discount_tariffs:
+                    id: 1
+                    operator_tariff: Test Operator Tariff Text 1234
+                    operator_reference: Test Operator Reference Text 12
+                    value: 22.22
+                    status:
+                      id: 2
+                      code: 1
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+                    previous_tariff: null
+                    current_snapshot: true
+                  discount_period:
+                    id: 16
+                    type: MONTHLY
+                    length: 1
+                    count: 1
+                  recurring_tariffs:
+                    id: 1
+                    operator_tariff: Test Operator Tariff Text 1234
+                    operator_reference: Test Operator Reference Text 12
+                    value: 22.22
+                    status:
+                      id: 2
+                      code: 1
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+                    previous_tariff: null
+                    current_snapshot: true
+                  recurring_period:
+                    id: 17
+                    type: MONTHLY
+                    length: 1
+                    count: 12
+                  lock_in_period:
+                    id: 18
+                    type: YEARLY
+                    length: 1
+                    count: 0
+                  benefits:
+                    - id: 1
+                      subscription_plan_benefit:
+                        id: 1
+                        benefit: FADE
+                        description: check
+                        price: 4444.22
+                        temp_price: 22
+                        temp_start_date: '2022-05-10'
+                        temp_end_date: '2022-06-10'
+                        tags: test
+                        publish: true
+                        benefits: []
+                        status:
+                          id: 3
+                          code: 2
+                          description: Deleted
+                          success: false
+                          deleted: true
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                      count: 2
+                      period_type: DAILY
+                    - id: 2
+                      subscription_plan_benefit:
+                        id: 1
+                        benefit: FADE
+                        description: check
+                        price: 4444.22
+                        temp_price: 22
+                        temp_start_date: '2022-05-10'
+                        temp_end_date: '2022-06-10'
+                        tags: test
+                        publish: true
+                        benefits: []
+                        status:
+                          id: 3
+                          code: 2
+                          description: Deleted
+                          success: false
+                          deleted: true
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                      count: 2
+                      period_type: DAILY
+                  vouchers:
+                    - id: 1
+                      plan_vouchers:
+                        id: 1
+                        voucher_code: KMD20299
+                        description: desc test
+                        tac: test tac test
+                        status:
+                          id: 2
+                          code: 1
+                          description: Active
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                      count: 1
+                  prerequisite_plans:
+                    - id: 2
+                      name: Test Plan Name 3
+                      pre_termination_fee: true
+                      retail_offer: true
+                      dependents: 2
+                      discount_tariffs:
+                        id: 1
+                        operator_tariff: Test Operator Tariff Text 1234
+                        operator_reference: Test Operator Reference Text 12
+                        value: 22.22
+                        status:
+                          id: 2
+                          code: 1
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                        previous_tariff: null
+                        current_snapshot: true
+                      discount_period:
+                        id: 5
+                        type: MONTHLY
+                        length: 1
+                        count: 1
+                      recurring_tariffs:
+                        id: 1
+                        operator_tariff: Test Operator Tariff Text 1234
+                        operator_reference: Test Operator Reference Text 12
+                        value: 22.22
+                        status:
+                          id: 2
+                          code: 1
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                        previous_tariff: null
+                        current_snapshot: true
+                      recurring_period:
+                        id: 4
+                        type: MONTHLY
+                        length: 1
+                        count: 12
+                      lock_in_period:
+                        id: 6
+                        type: YEARLY
+                        length: 1
+                        count: 0
+                      benefits:
+                        - id: 1
+                          subscription_plan_benefit:
+                            id: 1
+                            benefit: FADE
+                            description: check
+                            price: 4444.22
+                            temp_price: 22
+                            temp_start_date: '2022-05-10'
+                            temp_end_date: '2022-06-10'
+                            tags: test
+                            publish: true
+                            benefits: []
+                            status:
+                              id: 3
+                              code: 2
+                              description: Deleted
+                              success: false
+                              deleted: true
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                          count: 2
+                          period_type: DAILY
+                      vouchers:
+                        - id: 1
+                          plan_vouchers:
+                            id: 1
+                            voucher_code: KMD20299
+                            description: desc test
+                            tac: test tac test
+                            status:
+                              id: 2
+                              code: 1
+                              description: Active
+                              success: false
+                              deleted: false
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                          count: 1
+                      prerequisite_plans: []
+                      status:
+                        id: 2
+                        code: 1
+                        description: Active
+                        success: false
+                        deleted: false
+                        pending: false
+                        refunded: false
+                        emr_closed: false
+                        failed: false
+                  status:
+                    id: 2
+                    code: 1
+                    description: Active
+                    success: false
+                    deleted: false
+                    pending: false
+                    refunded: false
+                    emr_closed: false
+                    failed: false
+    /api/v2/subscription-plans/{subsPlanId}:
+      delete:
+        tags:
+          - subscription-plans
+        summary: DELETE Subscription Plan V2
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: subsPlanId
+            in: path
+            schema:
+              type: integer
+            required: true
+            description: (Required) ID of subscription to delete
+            example: '1'
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: 1
+    /api/v2/subscription:
+      post:
+        tags:
+          - subscription
+        summary: CREATE Subscription V2
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  user_detail_id: 400
+                  subscription_plan:
+                    id: 2
+                  expiry: '2023-07-27'
+                  referrer: facebook.com
+                  retry_count: 0
+                  next_action: resume
+                  next_date: '2022-08-20'
+                  retry_days: '123'
+                  channel: SMS
+                  campaign: night elf
+                  trial_date: '2023-07-29'
+                  tags: tag 1
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/json
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  data:
+                    id: 1
+                    user_detail_id: 400
+                    subscription_plan:
+                      id: 5
+                      name: Test Plan Name 2
+                      pre_termination_fee: true
+                      retail_offer: true
+                      dependents: 2
+                      discount_tariffs:
+                        id: 1
+                        operator_tariff: Test Operator Tariff Text 1234
+                        operator_reference: Test Operator Reference Text 12
+                        value: 22.22
+                        status:
+                          id: 2
+                          code: 1
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                        previous_tariff: null
+                        current_snapshot: true
+                      discount_period:
+                        id: 16
+                        type: MONTHLY
+                        length: 1
+                        count: 1
+                      recurring_tariffs:
+                        id: 1
+                        operator_tariff: Test Operator Tariff Text 1234
+                        operator_reference: Test Operator Reference Text 12
+                        value: 22.22
+                        status:
+                          id: 2
+                          code: 1
+                          success: false
+                          deleted: false
+                          pending: false
+                          refunded: false
+                          emr_closed: false
+                          failed: false
+                        previous_tariff: null
+                        current_snapshot: true
+                      recurring_period:
+                        id: 17
+                        type: MONTHLY
+                        length: 1
+                        count: 12
+                      lock_in_period:
+                        id: 18
+                        type: YEARLY
+                        length: 1
+                        count: 0
+                      benefits:
+                        - id: 1
+                          subscription_plan_benefit:
+                            id: 1
+                            benefit: FADE
+                            description: check
+                            price: 4444.22
+                            temp_price: 22
+                            temp_start_date: '2022-05-10'
+                            temp_end_date: '2022-06-10'
+                            tags: test
+                            publish: true
+                            benefits: []
+                            status:
+                              id: 3
+                              code: 2
+                              description: Deleted
+                              success: false
+                              deleted: true
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                          count: 2
+                          period_type: DAILY
+                        - id: 2
+                          subscription_plan_benefit:
+                            id: 1
+                            benefit: FADE
+                            description: check
+                            price: 4444.22
+                            temp_price: 22
+                            temp_start_date: '2022-05-10'
+                            temp_end_date: '2022-06-10'
+                            tags: test
+                            publish: true
+                            benefits: []
+                            status:
+                              id: 3
+                              code: 2
+                              description: Deleted
+                              success: false
+                              deleted: true
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                          count: 2
+                          period_type: DAILY
+                      vouchers:
+                        - id: 1
+                          plan_vouchers:
+                            id: 1
+                            voucher_code: KMD20299
+                            description: desc test
+                            tac: test tac test
+                            status:
+                              id: 2
+                              code: 1
+                              description: Active
+                              success: false
+                              deleted: false
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                          count: 1
+                      prerequisite_plans:
+                        - id: 2
+                          name: Test Plan Name 3
+                          pre_termination_fee: true
+                          retail_offer: true
+                          dependents: 2
+                          discount_tariffs:
+                            id: 1
+                            operator_tariff: Test Operator Tariff Text 1234
+                            operator_reference: Test Operator Reference Text 12
+                            value: 22.22
+                            status:
+                              id: 2
+                              code: 1
+                              success: false
+                              deleted: false
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                            previous_tariff: null
+                            current_snapshot: true
+                          discount_period:
+                            id: 5
+                            type: MONTHLY
+                            length: 1
+                            count: 1
+                          recurring_tariffs:
+                            id: 1
+                            operator_tariff: Test Operator Tariff Text 1234
+                            operator_reference: Test Operator Reference Text 12
+                            value: 22.22
+                            status:
+                              id: 2
+                              code: 1
+                              success: false
+                              deleted: false
+                              pending: false
+                              refunded: false
+                              emr_closed: false
+                              failed: false
+                            previous_tariff: null
+                            current_snapshot: true
+                          recurring_period:
+                            id: 4
+                            type: MONTHLY
+                            length: 1
+                            count: 12
+                          lock_in_period:
+                            id: 6
+                            type: YEARLY
+                            length: 1
+                            count: 0
+                          benefits: []
+                          vouchers: []
+                          prerequisite_plans: []
+                          status:
+                            id: 2
+                            code: 1
+                            description: Active
+                            success: false
+                            deleted: false
+                            pending: false
+                            refunded: false
+                            emr_closed: false
+                            failed: false
+                      status:
+                        id: 2
+                        code: 1
+                        description: Active
+                        success: false
+                        deleted: false
+                        pending: false
+                        refunded: false
+                        emr_closed: false
+                        failed: false
+                    subscription_usages: []
+                    correlator: null
+                    expiry: '2023-07-27'
+                    next_action: resume
+                    next_date: '2022-08-20'
+                    retry_count: 0
+                    retry_days: '123'
+                    tags: tag 1
+                    trial_date: '2023-07-29'
+                    subscribe_date: '2022-08-02'
+                    activate_date: null
+                    unsubscribe_date: null
+                    suspend_date: null
+                    resume_date: null
+                    campaign: Shopee 8.8
+                    referrer: facebook.com
+                    channel: SMS
+                    unsubscribe_channel: null
+                    status:
+                      id: 15
+                      code: 14
+                      description: Opt-in
+                      success: false
+                      deleted: false
+                      pending: false
+                      refunded: false
+                      emr_closed: false
+                      failed: false
+      get:
+        tags:
+          - subscription
+        summary: RETRIEVE All Subscription V2
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  content:
+                    - id: 1
+                      user_detail_id: 400
+                      user_detail_json:
+                        id: 400
+                        user_id: 398
+                        first_name: null
+                        middle_name: null
+                        last_name: null
+                        email: test1211@mailiantor.com
+                        mobile_number: '0'
+                        birth_date: null
+                        gender: null
+                        municipality: null
+                        picture: null
+                        role:
+                          code: CUSTOMER
+                          description: Customer / Patient
+                        status:
+                          code: 5
+                          description: For Verification
+                          message: null
+                        institution_type: null
+                        membership_id: null
+                        full_name: null
+                      subscription_plan:
+                        id: 5
+                        name: Test Plan Name 2
+                        pre_termination_fee: true
+                        retail_offer: true
+                        dependents: 2
+                        discount_tariffs:
+                          id: 1
+                          operator_tariff: Test Operator Tariff Text 1234
+                          operator_reference: Test Operator Reference Text 12
+                          value: 22.22
+                          status:
+                            code: 1
+                            description: Active
+                            message: null
+                          previous_tariff: null
+                          current_snapshot: false
+                        discount_period:
+                          id: 16
+                          type: MONTHLY
+                          length: 1
+                          count: 1
+                        recurring_tariffs:
+                          id: 1
+                          operator_tariff: Test Operator Tariff Text 1234
+                          operator_reference: Test Operator Reference Text 12
+                          value: 22.22
+                          status:
+                            code: 1
+                            description: Active
+                            message: null
+                          previous_tariff: null
+                          current_snapshot: false
+                        recurring_period:
+                          id: 17
+                          type: MONTHLY
+                          length: 1
+                          count: 12
+                        lock_in_period:
+                          id: 18
+                          type: YEARLY
+                          length: 1
+                          count: 0
+                        exclusivity_group:
+                          id: 3
+                          name: EG 156
+                          status:
+                            code: 1
+                            description: Active
+                            message: null
+                          subscription_plans:
+                            - id: 2
+                              name: Test Plan Name 3
+                            - id: 5
+                              name: Test Plan Name 2
+                        status:
+                          code: 1
+                          description: Active
+                          message: null
+                        benefits:
+                          - id: 1
+                            subscription_plan_benefit:
+                              id: 1
+                              benefit: FADE
+                              description: check
+                              price: 4444.22
+                              temp_price: 22
+                              temp_start_date: '2022-05-10'
+                              temp_end_date: '2022-06-10'
+                              tags: test
+                              publish: true
+                              status:
+                                code: 2
+                                description: Deleted
+                                message: null
+                              benefits: []
+                            count: 2
+                            period_type: DAILY
+                          - id: 2
+                            subscription_plan_benefit:
+                              id: 1
+                              benefit: FADE
+                              description: check
+                              price: 4444.22
+                              temp_price: 22
+                              temp_start_date: '2022-05-10'
+                              temp_end_date: '2022-06-10'
+                              tags: test
+                              publish: true
+                              status:
+                                code: 2
+                                description: Deleted
+                                message: null
+                              benefits: []
+                            count: 2
+                            period_type: DAILY
+                        vouchers:
+                          - id: 1
+                            count: 1
+                            subscription_plan_vouchers:
+                              id: 1
+                              voucher_code: KMD20299
+                              description: desc test
+                              tac: test tac test
+                              status:
+                                code: 1
+                                description: Active
+                                message: null
+                        prerequisite_plans:
+                          - id: 2
+                            name: Test Plan Name 3
+                            pre_termination_fee: true
+                            retail_offer: true
+                            dependents: 2
+                            discount_tariffs:
+                              id: 1
+                              operator_tariff: Test Operator Tariff Text 1234
+                              operator_reference: Test Operator Reference Text 12
+                              value: 22.22
+                              status:
+                                code: 1
+                                description: Active
+                                message: null
+                              previous_tariff: null
+                              current_snapshot: false
+                            discount_period:
+                              id: 5
+                              type: MONTHLY
+                              length: 1
+                              count: 1
+                            recurring_tariffs:
+                              id: 1
+                              operator_tariff: Test Operator Tariff Text 1234
+                              operator_reference: Test Operator Reference Text 12
+                              value: 22.22
+                              status:
+                                code: 1
+                                description: Active
+                                message: null
+                              previous_tariff: null
+                              current_snapshot: false
+                            recurring_period:
+                              id: 4
+                              type: MONTHLY
+                              length: 1
+                              count: 12
+                            lock_in_period:
+                              id: 6
+                              type: YEARLY
+                              length: 1
+                              count: 0
+                            exclusivity_group:
+                              id: 3
+                              name: EG 156
+                              status:
+                                code: 1
+                                description: Active
+                                message: null
+                              subscription_plans:
+                                - id: 2
+                                  name: Test Plan Name 3
+                                - id: 5
+                                  name: Test Plan Name 2
+                            status:
+                              code: 1
+                              description: Active
+                              message: null
+                            benefits: []
+                            vouchers: []
+                            prerequisite_plans: []
+                      subscription_usages:
+                        - id: 1
+                          user_detail_id: 400
+                          user_detail_json: null
+                          included_benefit:
+                            id: 1
+                            subscription_plan_benefit:
+                              id: 1
+                              benefit: FADE
+                              description: check
+                              price: 4444.22
+                              temp_price: 22
+                              temp_start_date: '2022-05-10'
+                              temp_end_date: '2022-06-10'
+                              tags: test
+                              publish: true
+                              status:
+                                code: 2
+                                description: Deleted
+                                message: null
+                              benefits: []
+                            count: 2
+                            period_type: DAILY
+                          consumed_count: 0
+                          consumed_date: null
+                        - id: 2
+                          user_detail_id: 400
+                          user_detail_json: null
+                          included_benefit:
+                            id: 2
+                            subscription_plan_benefit:
+                              id: 1
+                              benefit: FADE
+                              description: check
+                              price: 4444.22
+                              temp_price: 22
+                              temp_start_date: '2022-05-10'
+                              temp_end_date: '2022-06-10'
+                              tags: test
+                              publish: true
+                              status:
+                                code: 2
+                                description: Deleted
+                                message: null
+                              benefits: []
+                            count: 2
+                            period_type: DAILY
+                          consumed_count: 0
+                          consumed_date: null
+                      correlator: null
+                      expiry: '2023-07-27'
+                      next_action: resume
+                      next_date: '2022-08-20'
+                      retry_count: 0
+                      retry_days: '123'
+                      tags: tag 1
+                      trial_date: '2023-07-29'
+                      subscribe_date: '2022-08-02'
+                      activate_date: null
+                      unsubscribe_date: null
+                      campaign: Shopee 8.8
+                      referrer: facebook.com
+                      channel: SMS
+                      unsubscribe_channel: null
+                      status:
+                        code: 14
+                        description: Opt-in
+                        message: null
+                  pageable:
+                    sort:
+                      unsorted: true
+                      sorted: false
+                      empty: true
+                    offset: 0
+                    page_number: 0
+                    page_size: 10
+                    unpaged: false
+                    paged: true
+                  total_elements: 1
+                  last: true
+                  total_pages: 1
+                  number: 0
+                  size: 10
+                  sort:
+                    unsorted: true
+                    sorted: false
+                    empty: true
+                  number_of_elements: 1
+                  first: true
+                  empty: false
+    /api/v2/subscription/usage:
+      get:
+        tags:
+          - subscription
+        summary: RETRIEVE All Subscription Usage by User
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  - user:
+                    id: 400
+                    user_id: 398
+                    first_name: null
+                    middle_name: null
+                    last_name: null
+                    email: test1211@mailiantor.com
+                    mobile_number: '0'
+                    birth_date: null
+                    gender: null
+                    municipality: null
+                    picture: null
+                    role:
+                      code: CUSTOMER
+                      description: Customer / Patient
+                    status:
+                      code: 5
+                      description: For Verification
+                      message: null
+                    institution_type: null
+                    membership_id: null
+                    full_name: null
+                  - usages:
+                    - id: 1
+                      user_detail_id: 400
+                      user_detail_json: null
+                      included_benefit:
+                        id: 1
+                        subscription_plan_benefit:
+                          id: 1
+                          benefit: FADE
+                          description: check
+                          price: 4444.22
+                          temp_price: 22
+                          temp_start_date: '2022-05-10'
+                          temp_end_date: '2022-06-10'
+                          tags: test
+                          publish: true
+                          status:
+                            code: 2
+                            description: Deleted
+                            message: null
+                          benefits: []
+                        count: 2
+                        period_type: DAILY
+                      consumed_count: 0
+                      consumed_date: null
+                    - id: 2
+                      user_detail_id: 400
+                      user_detail_json: null
+                      included_benefit:
+                        id: 2
+                        subscription_plan_benefit:
+                          id: 1
+                          benefit: FADE
+                          description: check
+                          price: 4444.22
+                          temp_price: 22
+                          temp_start_date: '2022-05-10'
+                          temp_end_date: '2022-06-10'
+                          tags: test
+                          publish: true
+                          status:
+                            code: 2
+                            description: Deleted
+                            message: null
+                          benefits: []
+                        count: 2
+                        period_type: DAILY
+                      consumed_count: 0
+                      consumed_date: null
+    /api/oauth/token:
+      post:
+        summary: LOGIN
+        requestBody:
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    example: admin1@hermes.com
+                  password:
+                    type: string
+                    example: testpassword
+                  grant_type:
+                    type: string
+                    example: password
+        parameters:
+          - name: Content-Type
+            in: header
+            schema:
+              type: string
+            example: application/x-www-form-urlencoded
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: ''
+    /api/logs/payment-subscription:
+      get:
+        summary: RETRIEVE Payment Subscription Logs
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Accept
+            in: header
+            schema:
+              type: string
+            example: application/json
+        responses:
+          '200':
+            description: OK
+            headers:
+              Content-Type:
+                schema:
+                  type: string
+                  example: application/json
+            content:
+              application/json:
+                schema:
+                  type: object
+                example: ''
+contentType: yaml

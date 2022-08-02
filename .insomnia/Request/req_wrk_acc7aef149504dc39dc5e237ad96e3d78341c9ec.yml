@@ -1,0 +1,95 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d78341c9ec
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d75340c1a8
+modified: 1659449963155
+created: 1659449963155
+url: "{{ base_url }}/api/v2/subscription-plans"
+name: UPDATE Subscription Plan V2
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "id": 1,
+      "name": "Test Plan Name 2",
+      "retail_offer": true,
+      "pre_termination_fee": true,
+      "dependents": 2,
+      "benefits": [
+        {
+          "id": 1,
+          "subscription_plan_benefit": {
+            "id": 1
+          },
+          "count": 2,
+          "period_type": "DAILY"
+        },
+        {
+          "id": 2,
+          "subscription_plan_benefit": {
+            "id": 1
+          },
+          "count": 2,
+          "period_type": "DAILY"
+        }
+      ],
+      "vouchers": [
+        {
+          "id": 1,
+          "subscription_plan_vouchers": {
+            "id": 1
+          },
+          "count": 1,
+          "expiry": "2022-05-10"
+        }
+      ],
+      "prerequisite_plans": [
+        {
+          "id": 2
+        }
+      ],
+      "exclusivity_group": {
+        "id": 1
+      },
+      "discount_tariffs": {
+        "id": 1
+      },
+      "recurring_tariffs": {
+        "id": 1
+      },
+      "discount_period": {
+        "count": 1,
+        "length": 1,
+        "type": "MONTHLY"
+      },
+      "recurring_period": {
+        "count": 12,
+        "length": 1,
+        "type": "MONTHLY"
+      },
+      "lock_in_period": {
+        "length": 1,
+        "type": "YEARLY"
+      }
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: true
+    value: string
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963155
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

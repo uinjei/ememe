@@ -1,0 +1,36 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d74d34e2ba
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dfde59ed
+modified: 1659449963205
+created: 1659449963205
+url: "{{ base_url }}/api/skus"
+name: RETRIEVE All SKU
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: page
+    disabled: true
+    value: "0"
+  - name: size
+    disabled: true
+    value: "0"
+  - name: search
+    disabled: true
+    value: string
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963205
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

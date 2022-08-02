@@ -1,0 +1,31 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d7d055b234
+type: Request
+parentId: wrk_acc7aef149504dc39dc5e237ad96e3d7
+modified: 1659449963139
+created: 1659449963139
+url: "{{ base_url }}/api/oauth/token"
+name: LOGIN
+description: ""
+method: POST
+body:
+  mimeType: application/x-www-form-urlencoded
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: true
+    value: string
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963139
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

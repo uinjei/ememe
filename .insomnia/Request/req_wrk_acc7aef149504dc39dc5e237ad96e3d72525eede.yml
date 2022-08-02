@@ -1,0 +1,27 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d72525eede
+type: Request
+parentId: wrk_acc7aef149504dc39dc5e237ad96e3d7
+modified: 1659449963137
+created: 1659449963137
+url: "{{ base_url }}/api/logs/payment-subscription"
+name: RETRIEVE Payment Subscription Logs
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963137
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,38 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d7b0a375f2
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7c7492836
+modified: 1659449963177
+created: 1659449963177
+url: "{{ base_url }}/api/tariffs"
+name: CREATE Tariffs
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "type": "recurring",
+      "operator_tariff": "Test Operator Tariff Text 1234",
+      "operator_reference": "Test Operator Reference Text 12",
+      "value": 22.22
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: true
+    value: string
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963177
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

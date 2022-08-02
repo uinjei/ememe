@@ -1,0 +1,36 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d707218e9e
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dd01687d
+modified: 1659449963197
+created: 1659449963197
+url: "{{ base_url }}/api/vouchers"
+name: RETRIEVE All Vouchers
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: page
+    disabled: true
+    value: "0"
+  - name: size
+    disabled: true
+    value: "0"
+  - name: search
+    disabled: true
+    value: string
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963197
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

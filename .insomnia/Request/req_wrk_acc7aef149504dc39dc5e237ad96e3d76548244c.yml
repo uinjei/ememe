@@ -1,0 +1,27 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d76548244c
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dc917a77
+modified: 1659449963142
+created: 1659449963142
+url: "{{ base_url }}/api/v2/subscription/usage"
+name: RETRIEVE All Subscription Usage by User
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963142
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

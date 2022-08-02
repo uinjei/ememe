@@ -1,0 +1,37 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d711f1f5d9
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7dd01687d
+modified: 1659449963199
+created: 1659449963199
+url: "{{ base_url }}/api/vouchers"
+name: CREATE Vouchers
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "voucher_code": "KMD2028",
+      "description": "desc",
+      "tac": "test tac"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: true
+    value: string
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963199
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

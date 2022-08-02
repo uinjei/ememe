@@ -1,0 +1,27 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d724178c1a
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d72e0e0644
+modified: 1659449963180
+created: 1659449963180
+url: "{{ base_url }}/api/exclusivity-group/{{ exclusivityGroupId }}"
+name: DELETE Exclusivity Group
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963180
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

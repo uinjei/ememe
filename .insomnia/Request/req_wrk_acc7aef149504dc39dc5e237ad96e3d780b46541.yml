@@ -1,0 +1,27 @@
+_id: req_wrk_acc7aef149504dc39dc5e237ad96e3d780b46541
+type: Request
+parentId: fld_wrk_acc7aef149504dc39dc5e237ad96e3d7c7492836
+modified: 1659449963163
+created: 1659449963163
+url: "{{ base_url }}/api/tariffs/{{ tariffId }}"
+name: DELETE Tariffs
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers:
+  - name: Accept
+    disabled: true
+    value: string
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1659449963163
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
